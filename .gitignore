@@ -1,11 +1,15 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # Dependencies
-node_modules
+node_modules/
 .pnp
 .pnp.js
 
-# Local env files
+# Package managers
+pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env & secrets (never commit real keys)
 .env
 .env.local
 .env.development.local
@@ -13,26 +17,34 @@ node_modules
 .env.production.local
 
 # Testing
-coverage
+coverage/
+*.lcov
 
 # Turbo
-.turbo
+.turbo/
 
-# Vercel
-.vercel
-
-# Build Outputs
+# Next.js / builds
 .next/
 out/
-build
-dist
+build/
+dist/
+*.tsbuildinfo
 
+# Vercel / Netlify
+.vercel/
+.netlify/
 
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Debug & tooling
+*.log
+.eslintcache
 
-# Misc
+# OS & editors
 .DS_Store
+Thumbs.db
+.idea/
+*.swp
+*.swo
+*~
+
+# Certificates (local)
 *.pem
