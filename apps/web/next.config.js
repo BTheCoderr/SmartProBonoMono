@@ -8,7 +8,7 @@ const nextConfig = {
   // pnpm + Turborepo: Next must resolve `next` from the repo root node_modules.
   // https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory
   turbopack: {
-    root: path.join(__dirname, "../.."),
+    root: path.resolve(__dirname, "../.."),
   },
 };
 
