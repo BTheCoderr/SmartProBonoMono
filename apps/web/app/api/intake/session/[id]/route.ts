@@ -1,15 +1,14 @@
 import { NextResponse } from "next/server";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 import { loadIntakeSession, updateSessionStep } from "@/lib/intake/persistence";
+import { jsonLocalOk } from "@/lib/intake/local-api-fallback";
 
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(_request: Request, context: Ctx) {
   if (!isSupabaseConfigured()) {
-    return NextResponse.json(
-      { error: "Supabase not configured", code: "SUPABASE_DISABLED" },
-      { status: 503 },
-    );
+    const { id } = await context.params;
+    return NextResponse.json({ session: { id }, answers: {} });
   }
   try {
     const { id } = await context.params;
@@ -26,10 +25,7 @@ export async function GET(_request: Request, context: Ctx) {
 
 export async function PATCH(request: Request, context: Ctx) {
   if (!isSupabaseConfigured()) {
-    return NextResponse.json(
-      { error: "Supabase not configured", code: "SUPABASE_DISABLED" },
-      { status: 503 },
-    );
+    return jsonLocalOk();
   }
   try {
     const { id } = await context.params;

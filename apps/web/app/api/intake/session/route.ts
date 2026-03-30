@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 import { createIntakeSession } from "@/lib/intake/persistence";
+import { jsonLocalSession } from "@/lib/intake/local-api-fallback";
 
 export async function POST(request: Request) {
   if (!isSupabaseConfigured()) {
-    return NextResponse.json(
-      { error: "Supabase not configured", code: "SUPABASE_DISABLED" },
-      { status: 503 },
-    );
+    return jsonLocalSession();
   }
   try {
     const body = (await request.json()) as {
