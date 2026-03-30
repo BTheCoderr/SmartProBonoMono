@@ -1,0 +1,13 @@
+# Lives next to next.config.js. Netlify UI (recommended):
+#   Base directory: leave empty (avoid "/" if the UI allows blank)
+#   Package directory: apps/web
+#   Publish: empty
+#   Functions directory: empty (this repo has no root netlify/functions)
+# Build + install run from the repo root for pnpm workspaces.
+# https://docs.netlify.com/build/configure-builds/monorepos/
+
+[build]
+  command = "pnpm install --frozen-lockfile && pnpm exec turbo run build --filter web"
+
+[build.environment]
+  NODE_VERSION = "20"
