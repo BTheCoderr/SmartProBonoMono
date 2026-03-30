@@ -1,0 +1,9 @@
+# Netlify runs install + this command from the repository root when
+# Site settings > Build > Package directory = apps/web (base directory unset).
+# https://docs.netlify.com/build/configure-builds/monorepos/
+
+[build]
+  command = "pnpm install --frozen-lockfile && pnpm exec turbo run build --filter web"
+
+[build.environment]
+  NODE_VERSION = "20"
