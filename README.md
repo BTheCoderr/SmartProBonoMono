@@ -1,3 +1,9 @@
+# SmartProBonoMono
+
+**Local install, pnpm, and Supabase:** see [docs/local-setup.md](docs/local-setup.md).
+
+---
+
 # Turborepo starter
 
 This Turborepo starter is maintained by the Turborepo core team.
